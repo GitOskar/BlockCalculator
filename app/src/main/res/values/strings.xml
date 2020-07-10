@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">BlockCalculator</string>
+    <string name="calculate">Calculate</string>
+    <string name="max_number_of_pr">Max number of PR</string>
+    <string name="current_amount_of_pr">Current amount of PR</string>
+    <string name="refund">Refund</string>
+    <string name="on_place">Current amount of pr on place that you want</string>
+    <string name="arc_refund">Arc refund</string>
+    <string name="refresh">Refresh</string>
+</resources>

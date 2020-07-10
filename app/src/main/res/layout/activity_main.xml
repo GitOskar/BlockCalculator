@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mainbackground"
+    tools:context=".MainActivity" >
+
+    <EditText
+        android:id="@+id/actualOnPlaceBox"
+        android:layout_width="153dp"
+        android:layout_height="66dp"
+        android:background="#99141414"
+        android:gravity="center"
+        android:inputType="number"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/prOnPlace"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.714"
+        app:layout_constraintStart_toEndOf="@+id/prOnPlace"
+        app:layout_constraintTop_toBottomOf="@+id/refundBox"
+        app:layout_constraintVertical_bias="1.0" />
+
+
+    <EditText
+        android:id="@+id/refundBox"
+        android:layout_width="153dp"
+        android:layout_height="66dp"
+        android:layout_marginBottom="4dp"
+        android:background="#99141414"
+        android:gravity="center"
+        android:inputType="number"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/backPr"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.714"
+        app:layout_constraintStart_toEndOf="@+id/backPr"
+        app:layout_constraintTop_toBottomOf="@+id/currOnLvlBox"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/currOnLvlBox"
+        android:layout_width="153dp"
+        android:layout_height="66dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="#99141414"
+        android:gravity="center"
+        android:inputType="number"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/currentPr"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/currentPr"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/maxPRBox"
+        android:layout_width="153dp"
+        android:layout_height="66dp"
+        android:background="#99141414"
+        android:gravity="center"
+        android:inputType="number"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/currOnLvlBox"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.714"
+        app:layout_constraintStart_toEndOf="@+id/maxPr"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.848" />
+
+    <TextView
+        android:id="@+id/prOnPlace"
+        android:layout_width="179dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/infbackground"
+        android:gravity="center"
+        android:text="@string/on_place"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.099"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/backPr" />
+
+    <TextView
+        android:id="@+id/backPr"
+        android:layout_width="179dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/infbackground"
+        android:gravity="center"
+        android:text="@string/refund"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.099"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currentPr" />
+
+    <TextView
+        android:id="@+id/currentPr"
+        android:layout_width="179dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/infbackground"
+        android:gravity="center"
+        android:text="@string/current_amount_of_pr"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.099"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/maxPr" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="163dp"
+        android:layout_height="84dp"
+        android:background="@drawable/custombutton"
+        android:fontFamily="sans-serif"
+        android:text="@string/calculate"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.939" />
+
+    <TextView
+        android:id="@+id/screen"
+        android:layout_width="284dp"
+        android:layout_height="99dp"
+        android:background="#99141414"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.098" />
+
+    <TextView
+        android:id="@+id/maxPr"
+        android:layout_width="179dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/infbackground"
+        android:clickable="false"
+        android:gravity="center"
+        android:text="@string/max_number_of_pr"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.099"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/screen" />
+
+    <Button
+        android:id="@+id/settingsbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_settings_foreground"
+        android:gravity="bottom|center"
+        android:text="@string/arc_refund"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.99"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.958" />
+
+    <Button
+        android:id="@+id/refreshbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/refresh_foreground"
+        android:gravity="bottom|center"
+        android:text="@string/refresh"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.958" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
