@@ -95,6 +95,18 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Se
 
     @Override
     public void applyText(String arcRefund) {
-        screen.setText(arcRefund);
+        try {
+            this.arcRefund = Double.parseDouble(arcRefund);
+        } catch (NumberFormatException e)
+        {
+            SettingsDialog settingsDialog = new SettingsDialog();
+            settingsDialog.show(getSupportFragmentManager(), "settingsDialog");
+            return;
+        }
+        if (this.arcRefund < 1.0 || this.arcRefund > 6.0)
+        {
+            SettingsDialog settingsDialog = new SettingsDialog();
+            settingsDialog.show(getSupportFragmentManager(), "settingsDialog");
+        }
     }
 }
