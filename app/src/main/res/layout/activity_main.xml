@@ -170,6 +170,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/ic_settings_foreground"
         android:gravity="bottom|center"
+        android:onClick="settingsOnClick"
         android:text="@string/arc_refund"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"

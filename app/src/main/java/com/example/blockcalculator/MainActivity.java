@@ -13,9 +13,9 @@ import org.w3c.dom.Text;
 
 import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SettingsDialog.SettingsDialogListener {
 
-    double arcRefund = 1.9, maxPr=0, currOnLvl=0, prOnPlace=0, refund=0;
+    double arcRefund = 0, maxPr=0, currOnLvl=0, prOnPlace=0, refund=0;
     EditText maxPRBox, currOnLvlBox, prOnPlaceBox, refundBox;
     TextView screen;
     Button button, refreshButton, settingsButton;
@@ -81,5 +81,20 @@ public class MainActivity extends AppCompatActivity {
         refundBox.setText("");
         prOnPlaceBox.setText("");
         currOnLvlBox.setText("");
+    }
+
+    public void settingsOnClick(View view) {
+            SettingsDialog settingsDialog = new SettingsDialog();
+            settingsDialog.show(getSupportFragmentManager(), "settingsDialog");
+
+    }
+
+    public void setArcRefund(double arcRefund) {
+        this.arcRefund = arcRefund;
+    }
+
+    @Override
+    public void applyText(String arcRefund) {
+        screen.setText(arcRefund);
     }
 }
