@@ -2,6 +2,7 @@ package com.example.blockcalculator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,10 +16,12 @@ import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 
 public class MainActivity extends AppCompatActivity implements SettingsDialog.SettingsDialogListener {
 
-    double arcRefund = 0, maxPr=0, currOnLvl=0, prOnPlace=0, refund=0;
-    EditText maxPRBox, currOnLvlBox, prOnPlaceBox, refundBox;
-    TextView screen;
-    Button button, refreshButton, settingsButton;
+
+    private double NAN = -1.0, arcRefund = NAN, maxPr=0, currOnLvl=0, prOnPlace=0, refund=0;
+    private EditText maxPRBox, currOnLvlBox, prOnPlaceBox, refundBox;
+    private TextView screen;
+    private Button button, refreshButton, settingsButton;
+    private final String SHARED_PREFS = "mySharedPrefs", ARC_PREFS = "arcSharedPrefs";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Se
         currOnLvlBox = (EditText) findViewById(R.id.currOnLvlBox);
         prOnPlaceBox = (EditText) findViewById(R.id.actualOnPlaceBox);
         refundBox = (EditText) findViewById(R.id.refundBox);
-
+        loadData();
     }
 
     public void calculateOnClick(View view)
@@ -81,12 +84,12 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Se
         refundBox.setText("");
         prOnPlaceBox.setText("");
         currOnLvlBox.setText("");
+        loadData();
     }
 
     public void settingsOnClick(View view) {
             SettingsDialog settingsDialog = new SettingsDialog();
             settingsDialog.show(getSupportFragmentManager(), "settingsDialog");
-
     }
 
     public void setArcRefund(double arcRefund) {
@@ -104,6 +107,28 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Se
             return;
         }
         if (this.arcRefund < 1.0 || this.arcRefund > 6.0)
+        {
+            SettingsDialog settingsDialog = new SettingsDialog();
+            settingsDialog.show(getSupportFragmentManager(), "settingsDialog");
+        }
+        saveData();
+    }
+
+    public void saveData()
+    {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putFloat(ARC_PREFS, (float) arcRefund);
+        editor.commit();
+    }
+
+    public void loadData()
+    {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+
+        arcRefund = (double)sharedPreferences.getFloat(ARC_PREFS, (float)NAN);
+
+        if (arcRefund == NAN)
         {
             SettingsDialog settingsDialog = new SettingsDialog();
             settingsDialog.show(getSupportFragmentManager(), "settingsDialog");
