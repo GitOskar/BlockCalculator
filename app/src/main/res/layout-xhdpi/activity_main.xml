@@ -7,10 +7,11 @@
     android:background="@drawable/mainbackground"
     tools:context=".MainActivity">
 
+
     <EditText
         android:id="@+id/actualOnPlaceBox"
-        android:layout_width="153dp"
-        android:layout_height="66dp"
+        android:layout_width="120dp"
+        android:layout_height="57dp"
         android:background="#99141414"
         android:gravity="center"
         android:inputType="number"
@@ -22,26 +23,10 @@
         app:layout_constraintStart_toEndOf="@+id/prOnPlace"
         app:layout_constraintTop_toBottomOf="@+id/refundBox" />
 
-
-    <EditText
-        android:id="@+id/refundBox"
-        android:layout_width="153dp"
-        android:layout_height="66dp"
-        android:background="#99141414"
-        android:gravity="center"
-        android:inputType="number"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/actualOnPlaceBox"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/backPr"
-        app:layout_constraintTop_toBottomOf="@+id/currOnLvlBox" />
-
     <EditText
         android:id="@+id/currOnLvlBox"
-        android:layout_width="153dp"
-        android:layout_height="66dp"
+        android:layout_width="120dp"
+        android:layout_height="57dp"
         android:background="#99141414"
         android:gravity="center"
         android:inputType="number"
@@ -54,9 +39,24 @@
         app:layout_constraintTop_toBottomOf="@+id/maxPRBox" />
 
     <EditText
+        android:id="@+id/refundBox"
+        android:layout_width="120dp"
+        android:layout_height="57dp"
+        android:background="#99141414"
+        android:gravity="center"
+        android:inputType="number"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/actualOnPlaceBox"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/backPr"
+        app:layout_constraintTop_toBottomOf="@+id/currOnLvlBox" />
+
+    <EditText
         android:id="@+id/maxPRBox"
-        android:layout_width="153dp"
-        android:layout_height="66dp"
+        android:layout_width="120dp"
+        android:layout_height="57dp"
         android:background="#99141414"
         android:gravity="center"
         android:inputType="number"
@@ -69,29 +69,14 @@
         app:layout_constraintTop_toBottomOf="@+id/screen" />
 
     <TextView
-        android:id="@+id/prOnPlace"
-        android:layout_width="179dp"
-        android:layout_height="66dp"
-        android:background="@drawable/infbackground"
-        android:gravity="center"
-        android:text="@string/on_place"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/refreshbutton"
-        app:layout_constraintEnd_toStartOf="@+id/actualOnPlaceBox"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backPr" />
-
-    <TextView
         android:id="@+id/backPr"
-        android:layout_width="179dp"
-        android:layout_height="66dp"
+        android:layout_width="138dp"
+        android:layout_height="57dp"
         android:background="@drawable/infbackground"
         android:gravity="center"
         android:text="@string/refund"
         android:textColor="@android:color/white"
-        android:textSize="18sp"
+        android:textSize="16dp"
         app:layout_constraintBottom_toTopOf="@+id/prOnPlace"
         app:layout_constraintEnd_toStartOf="@+id/refundBox"
         app:layout_constraintHorizontal_bias="0.5"
@@ -100,28 +85,43 @@
 
     <TextView
         android:id="@+id/currentPr"
-        android:layout_width="179dp"
-        android:layout_height="66dp"
+        android:layout_width="138dp"
+        android:layout_height="57dp"
         android:background="@drawable/infbackground"
         android:gravity="center"
         android:text="@string/current_amount_of_pr"
         android:textColor="@android:color/white"
-        android:textSize="18sp"
+        android:textSize="16dp"
         app:layout_constraintBottom_toTopOf="@+id/backPr"
         app:layout_constraintEnd_toStartOf="@+id/currOnLvlBox"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/maxPr" />
 
+    <TextView
+        android:id="@+id/prOnPlace"
+        android:layout_width="138dp"
+        android:layout_height="57dp"
+        android:background="@drawable/infbackground"
+        android:gravity="center"
+        android:text="@string/on_place"
+        android:textColor="@android:color/white"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/refreshbutton"
+        app:layout_constraintEnd_toStartOf="@+id/actualOnPlaceBox"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/backPr" />
+
     <Button
         android:id="@+id/button"
-        android:layout_width="163dp"
-        android:layout_height="84dp"
+        android:layout_width="123dp"
+        android:layout_height="64dp"
         android:background="@drawable/custombutton"
         android:fontFamily="sans-serif"
         android:onClick="calculateOnClick"
         android:text="@string/calculate"
-        android:textSize="22sp"
+        android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/settingsbutton"
         app:layout_constraintHorizontal_bias="0.5"
@@ -130,8 +130,8 @@
 
     <TextView
         android:id="@+id/screen"
-        android:layout_width="284dp"
-        android:layout_height="99dp"
+        android:layout_width="263dp"
+        android:layout_height="78dp"
         android:background="#99141414"
         android:gravity="center"
         android:textColor="@android:color/white"
@@ -144,14 +144,14 @@
 
     <TextView
         android:id="@+id/maxPr"
-        android:layout_width="179dp"
-        android:layout_height="66dp"
+        android:layout_width="138dp"
+        android:layout_height="57dp"
         android:background="@drawable/infbackground"
         android:clickable="false"
         android:gravity="center"
         android:text="@string/max_number_of_pr"
         android:textColor="@android:color/white"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/currentPr"
         app:layout_constraintEnd_toStartOf="@+id/maxPRBox"
         app:layout_constraintHorizontal_bias="0.5"
@@ -160,13 +160,14 @@
 
     <Button
         android:id="@+id/settingsbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:background="@drawable/ic_settings_foreground"
         android:gravity="bottom|center"
         android:onClick="settingsOnClick"
         android:text="@string/arc_refund"
         android:textColor="@android:color/white"
+        android:textSize="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -175,13 +176,14 @@
 
     <Button
         android:id="@+id/refreshbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:background="@drawable/refresh_foreground"
         android:gravity="bottom|center"
         android:onClick="refreshOnClick"
         android:text="@string/refresh"
         android:textColor="@android:color/white"
+        android:textSize="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button"
         app:layout_constraintHorizontal_bias="0.5"
