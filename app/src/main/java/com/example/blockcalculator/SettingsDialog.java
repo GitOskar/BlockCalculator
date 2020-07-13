@@ -59,8 +59,4 @@ public class SettingsDialog extends AppCompatDialogFragment
 
     }
 
-    public interface SettingsDialogListener
-    {
-        void applyText(String arcRefund);
-    }
 }

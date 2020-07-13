@@ -14,9 +14,8 @@ import org.w3c.dom.Text;
 
 import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 
-public class MainActivity extends AppCompatActivity implements SettingsDialog.SettingsDialogListener {
-
-
+public class MainActivity extends AppCompatActivity implements SettingsDialogListener
+{
     private double NAN = -1.0, arcRefund = NAN, maxPr=0, currOnLvl=0, prOnPlace=0, refund=0;
     private EditText maxPRBox, currOnLvlBox, prOnPlaceBox, refundBox;
     private TextView screen;
