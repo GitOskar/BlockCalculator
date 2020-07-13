@@ -47,7 +47,8 @@ public class SettingsDialog extends AppCompatDialogFragment
     }
 
     @Override
-    public void onAttach(@NonNull Context context) {
+    public void onAttach(@NonNull Context context)
+    {
         super.onAttach(context);
 
         try {
@@ -56,7 +57,8 @@ public class SettingsDialog extends AppCompatDialogFragment
         {
             throw new ClassCastException(context.toString() + "Must implement interface") ;
         }
-
     }
+
+
 
 }

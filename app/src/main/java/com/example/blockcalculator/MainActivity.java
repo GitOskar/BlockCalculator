@@ -16,17 +16,19 @@ import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 
 public class MainActivity extends AppCompatActivity implements SettingsDialogListener
 {
-    private double NAN = -1.0, arcRefund = NAN, maxPr=0, currOnLvl=0, prOnPlace=0, refund=0;
+    private float arcRefund;
     private EditText maxPRBox, currOnLvlBox, prOnPlaceBox, refundBox;
     private TextView screen;
     private Button button, refreshButton, settingsButton;
     private final String SHARED_PREFS = "mySharedPrefs", ARC_PREFS = "arcSharedPrefs";
+    Loader loader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Loader loader = new Loader(getSharedPreferences(SHARED_PREFS, MODE_PRIVATE));
         button = (Button) findViewById(R.id.button);
         refreshButton = (Button) findViewById(R.id.refreshbutton);
         settingsButton = (Button) findViewById(R.id.settingsbutton);
@@ -35,23 +37,27 @@ public class MainActivity extends AppCompatActivity implements SettingsDialogLis
         currOnLvlBox = (EditText) findViewById(R.id.currOnLvlBox);
         prOnPlaceBox = (EditText) findViewById(R.id.actualOnPlaceBox);
         refundBox = (EditText) findViewById(R.id.refundBox);
-        loadData();
+        arcRefund = loader.loadData();
+
+        if (arcRefund == Loader.NAN)
+            settingsDialog();
     }
 
     public void calculateOnClick(View view)
     {
+        float maxPr, currOnLvl, prOnPlace, refund;
         try {
-            maxPr = Double.parseDouble(maxPRBox.getText().toString());
-            currOnLvl = Double.parseDouble(currOnLvlBox.getText().toString());
-            prOnPlace = Double.parseDouble(prOnPlaceBox.getText().toString());
-            refund = Double.parseDouble(refundBox.getText().toString());
+            maxPr = Float.parseFloat(maxPRBox.getText().toString());
+            currOnLvl = Float.parseFloat(currOnLvlBox.getText().toString());
+            prOnPlace = Float.parseFloat(prOnPlaceBox.getText().toString());
+            refund = Float.parseFloat(refundBox.getText().toString());
         } catch (NumberFormatException e)
         {
             screen.setText("Enter all data");
             return;
         }
 
-        double blockCost = Math.ceil((maxPr - currOnLvl + prOnPlace) / 2.0);
+        int blockCost = BlockCalculator.block(maxPr, currOnLvl, prOnPlace);
 
         if (currOnLvl + blockCost >= maxPr)
         {
@@ -59,21 +65,12 @@ public class MainActivity extends AppCompatActivity implements SettingsDialogLis
             return;
         }
 
-        int profit = (int) (Math.ceil(arcRefund * refund - blockCost));
+        int profit = BlockCalculator.profit(blockCost, arcRefund, refund);
 
-        if (profit >= 0) {
-            screen.setText("Block cost: "
-                    + blockCost
-                    + "\nProfit: "
-                    + profit);
-        }
+        if (profit >= 0)
+            screen.setText("Block cost: " + blockCost + "\nProfit: " + profit);
         else
-        {
-            screen.setText("Block cost: "
-                    + blockCost
-                    + "\nLoss: "
-                    + profit);
-        }
+            screen.setText("Block cost: " + blockCost + "\nLoss: " + profit);
     }
 
     public void refreshOnClick(View view)
@@ -83,54 +80,33 @@ public class MainActivity extends AppCompatActivity implements SettingsDialogLis
         refundBox.setText("");
         prOnPlaceBox.setText("");
         currOnLvlBox.setText("");
-        loadData();
     }
 
-    public void settingsOnClick(View view) {
-            SettingsDialog settingsDialog = new SettingsDialog();
-            settingsDialog.show(getSupportFragmentManager(), "settingsDialog");
-    }
-
-    public void setArcRefund(double arcRefund) {
-        this.arcRefund = arcRefund;
+    public void settingsOnClick(View view)
+    {
+        settingsDialog();
     }
 
     @Override
     public void applyText(String arcRefund) {
         try {
-            this.arcRefund = Double.parseDouble(arcRefund);
+            this.arcRefund = Float.parseFloat(arcRefund);
         } catch (NumberFormatException e)
         {
-            SettingsDialog settingsDialog = new SettingsDialog();
-            settingsDialog.show(getSupportFragmentManager(), "settingsDialog");
+            settingsDialog();
             return;
         }
         if (this.arcRefund < 1.0 || this.arcRefund > 6.0)
         {
-            SettingsDialog settingsDialog = new SettingsDialog();
-            settingsDialog.show(getSupportFragmentManager(), "settingsDialog");
+            settingsDialog();
         }
-        saveData();
+        loader = new Loader(getSharedPreferences(SHARED_PREFS, MODE_PRIVATE));
+        loader.saveData(this.arcRefund);
     }
 
-    public void saveData()
+    private void settingsDialog()
     {
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putFloat(ARC_PREFS, (float) arcRefund);
-        editor.commit();
-    }
-
-    public void loadData()
-    {
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-
-        arcRefund = (double)sharedPreferences.getFloat(ARC_PREFS, (float)NAN);
-
-        if (arcRefund == NAN)
-        {
-            SettingsDialog settingsDialog = new SettingsDialog();
-            settingsDialog.show(getSupportFragmentManager(), "settingsDialog");
-        }
+        SettingsDialog settingsDialog = new SettingsDialog();
+        settingsDialog.show(getSupportFragmentManager(), "settingsDialog");
     }
 }
